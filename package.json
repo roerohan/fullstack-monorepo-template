@@ -1,9 +1,23 @@
 {
 	"name": "fullstack-monorepo-template",
 	"version": "1.0.0",
-	"description": "Fullstack monorepo template",
+	"description": "Fullstack monorepo template with Cloudflare Workers and TanStack Start",
+	"author": "roerohan",
 	"license": "MIT",
-	"author": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roerohan/fullstack-monorepo-template"
+	},
+	"keywords": [
+		"monorepo",
+		"pnpm-workspace",
+		"cloudflare-workers",
+		"tanstack-start",
+		"hono",
+		"worker-rpc",
+		"typescript",
+		"template"
+	],
 	"private": true,
 	"type": "module",
 	"scripts": {
