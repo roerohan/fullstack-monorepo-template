@@ -1,0 +1,35 @@
+{
+	"name": "fullstack-monorepo-template",
+	"version": "1.0.0",
+	"description": "Fullstack monorepo template",
+	"license": "MIT",
+	"author": "",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev:worker": "pnpm --filter @monorepo/worker run dev",
+		"deploy:worker": "pnpm --filter @monorepo/worker run deploy",
+		"test:worker": "pnpm --filter @monorepo/worker run test",
+		"dev:web": "pnpm --filter @monorepo/web run dev",
+		"deploy:web": "pnpm --filter @monorepo/web run deploy",
+		"test:web": "pnpm --filter @monorepo/web run test",
+		"dev": "pnpm dev:worker",
+		"test": "pnpm -r test",
+		"lint": "pnpm -r lint && pnpm format:check",
+		"lint:fix": "pnpm -r lint:fix",
+		"format": "prettier --write '**/*.{ts,js,tsx,jsx,cjs,json,md}'",
+		"format:check": "prettier --check '**/*.{ts,js,cjs,json,md}'",
+		"deploy": "pnpm deploy:worker && pnpm deploy:web"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.39.1",
+		"@typescript-eslint/eslint-plugin": "^8.46.4",
+		"@typescript-eslint/parser": "^8.46.4",
+		"eslint": "^9.39.1",
+		"globals": "^16.5.0",
+		"typescript": "^5.5.2"
+	},
+	"dependencies": {
+		"prettier": "^3.6.2"
+	}
+}
