@@ -1,5 +1,5 @@
 {
-	"name": "@monorepo/worker",
+	"name": "@fullstack-monorepo-template/worker",
 	"version": "0.0.0",
 	"type": "module",
 	"engines": {

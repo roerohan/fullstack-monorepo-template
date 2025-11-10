@@ -1,5 +1,5 @@
 {
-	"name": "@monorepo/web",
+	"name": "@fullstack-monorepo-template/web",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
