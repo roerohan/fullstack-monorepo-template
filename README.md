@@ -124,29 +124,40 @@ export class WorkerRpc extends WorkerEntrypoint {
 }
 ```
 
-### In the Web App (TanStack Start server functions)
+### In the Web App (TanStack Start routes)
 
 ```typescript
-import { getServerContext } from '@tanstack/react-start/server';
+import { createFileRoute } from '@tanstack/react-router'
+import { createServerFn } from '@tanstack/react-start'
+import { getWorkerRpc } from '@/lib/rpc'
 
-export const loader = async () => {
-	const { WORKER_RPC } = getServerContext().cloudflare.env;
+const sayHello = createServerFn({ method: 'GET' }).handler(async () => {
+	const workerRpc = getWorkerRpc()
 
 	// Call RPC methods with full type safety
-	const result = await WORKER_RPC.sayHello('World');
+	const result = await workerRpc.sayHello('World')
 
-	return result;
-};
+	return result
+})
+
+export const Route = createFileRoute('/my-route')({
+	loader: async () => sayHello(),
+	component: MyComponent,
+})
 ```
 
-### Available RPC Methods
+### Example RPC Routes
 
-- `sayHello(name: string)` - Returns a greeting message
-- `calculate(operation, a, b)` - Performs arithmetic operations
-- `getData(key: string)` - Fetches data (can be extended for KV/D1/R2)
-- `processBatch(items: string[])` - Processes batch operations
+The template includes example RPC routes in `packages/web/src/routes/rpc/`:
 
-See `packages/web/src/lib/worker-rpc.ts` for usage examples.
+- `/rpc/say-hello?name=Alice` - Returns a greeting message
+- `/rpc/calculate?operation=add&a=5&b=3` - Performs arithmetic operations
+- `/rpc/get-data?key=myKey` - Fetches data (can be extended for KV/D1/R2)
+- `/rpc/process-batch?items=a,b,c` - Processes batch operations
+
+**Note:** These are template examples - customize or replace them with your own RPC methods for your use case.
+
+See `packages/web/src/routes/rpc/README.md` for detailed documentation on the RPC architecture and how to add new methods.
 
 ## Configuration
 
