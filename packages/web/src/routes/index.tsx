@@ -64,19 +64,21 @@ function App() {
 				<div className="relative max-w-5xl mx-auto">
 					<div className="flex items-center justify-center gap-6 mb-6">
 						<img src="/tanstack-circle-logo.png" alt="TanStack Logo" className="w-24 h-24 md:w-32 md:h-32" />
-						<h1 className="text-6xl md:text-7xl font-black text-white [letter-spacing:-0.08em]">
-							<span className="text-gray-300">TANSTACK</span>{' '}
-							<span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">START</span>
-						</h1>
+						<div className="flex flex-col">
+							<h1 className="text-6xl md:text-7xl font-black text-white [letter-spacing:-0.08em]">
+								<span className="text-gray-300">TANSTACK</span>{' '}
+								<span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">START</span>
+							</h1>
+							<a
+								href="https://github.com/roerohan/fullstack-monorepo-template"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-xl md:text-2xl text-gray-400 hover:text-cyan-400 transition-colors mt-1"
+							>
+								roerohan/fullstack-monorepo-template
+							</a>
+						</div>
 					</div>
-					<a
-						href="https://github.com/roerohan/fullstack-monorepo-template"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-2xl md:text-3xl text-gray-300 mb-4 font-light hover:text-cyan-400 transition-colors inline-block"
-					>
-						roerohan/fullstack-monorepo-template
-					</a>
 					<p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
 						TanStack Start + Cloudflare Workers monorepo. Build modern fullstack applications with type-safe RPC,
 						server functions, and edge deployment.
