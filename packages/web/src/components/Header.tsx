@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronRight, Home, Menu, Network, SquareFunction, StickyNote, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, Home, Menu, Network, SquareFunction, StickyNote, X, Star } from 'lucide-react';
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -9,19 +9,31 @@ export default function Header() {
 
 	return (
 		<>
-			<header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
-				<button
-					onClick={() => setIsOpen(true)}
-					className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-					aria-label="Open menu"
+			<header className="p-4 flex items-center justify-between bg-gray-800 text-white shadow-lg">
+				<div className="flex items-center">
+					<button
+						onClick={() => setIsOpen(true)}
+						className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+						aria-label="Open menu"
+					>
+						<Menu size={24} />
+					</button>
+					<h1 className="ml-4 text-xl font-semibold">
+						<Link to="/">
+							<img src="/tanstack-word-logo-white.svg" alt="TanStack Logo" className="h-10" />
+						</Link>
+					</h1>
+				</div>
+				<a
+					href="https://github.com/roerohan/fullstack-monorepo-template"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
 				>
-					<Menu size={24} />
-				</button>
-				<h1 className="ml-4 text-xl font-semibold">
-					<Link to="/">
-						<img src="/tanstack-word-logo-white.svg" alt="TanStack Logo" className="h-10" />
-					</Link>
-				</h1>
+					<Star className="w-4 h-4" />
+					<span className="hidden sm:inline">Star on GitHub</span>
+					<span className="sm:hidden">Star</span>
+				</a>
 			</header>
 
 			<aside

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RpcIndexRouteImport } from './routes/rpc/index'
 import { Route as RpcSayHelloRouteImport } from './routes/rpc/say-hello'
 import { Route as RpcProcessBatchRouteImport } from './routes/rpc/process-batch'
 import { Route as RpcGetDataRouteImport } from './routes/rpc/get-data'
@@ -25,6 +26,11 @@ import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ss
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RpcIndexRoute = RpcIndexRouteImport.update({
+  id: '/rpc/',
+  path: '/rpc/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RpcSayHelloRoute = RpcSayHelloRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/rpc/get-data': typeof RpcGetDataRoute
   '/rpc/process-batch': typeof RpcProcessBatchRoute
   '/rpc/say-hello': typeof RpcSayHelloRoute
+  '/rpc': typeof RpcIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/rpc/get-data': typeof RpcGetDataRoute
   '/rpc/process-batch': typeof RpcProcessBatchRoute
   '/rpc/say-hello': typeof RpcSayHelloRoute
+  '/rpc': typeof RpcIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/rpc/get-data': typeof RpcGetDataRoute
   '/rpc/process-batch': typeof RpcProcessBatchRoute
   '/rpc/say-hello': typeof RpcSayHelloRoute
+  '/rpc/': typeof RpcIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/rpc/get-data'
     | '/rpc/process-batch'
     | '/rpc/say-hello'
+    | '/rpc'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/rpc/get-data'
     | '/rpc/process-batch'
     | '/rpc/say-hello'
+    | '/rpc'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/rpc/get-data'
     | '/rpc/process-batch'
     | '/rpc/say-hello'
+    | '/rpc/'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   RpcGetDataRoute: typeof RpcGetDataRoute
   RpcProcessBatchRoute: typeof RpcProcessBatchRoute
   RpcSayHelloRoute: typeof RpcSayHelloRoute
+  RpcIndexRoute: typeof RpcIndexRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
@@ -193,6 +206,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rpc/': {
+      id: '/rpc/'
+      path: '/rpc'
+      fullPath: '/rpc'
+      preLoaderRoute: typeof RpcIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rpc/say-hello': {
@@ -281,6 +301,7 @@ const rootRouteChildren: RootRouteChildren = {
   RpcGetDataRoute: RpcGetDataRoute,
   RpcProcessBatchRoute: RpcProcessBatchRoute,
   RpcSayHelloRoute: RpcSayHelloRoute,
+  RpcIndexRoute: RpcIndexRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,

@@ -6,7 +6,7 @@ interface SayHelloData {
 	name: string;
 }
 
-const sayHello = createServerFn({ method: 'GET' }).handler(async (ctx: { data?: SayHelloData }) => {
+export const sayHello = createServerFn({ method: 'GET' }).handler(async (ctx: { data?: SayHelloData }) => {
 	const workerRpc = getWorkerRpc();
 
 	// Get the name from the context data

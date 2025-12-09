@@ -1,10 +1,32 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { Zap, Server, Route as RouteIcon, Shield, Waves, Sparkles } from 'lucide-react';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { Zap, Server, Route as RouteIcon, Shield, Network, Package } from 'lucide-react';
+import { sayHello } from './rpc/say-hello';
 
-export const Route = createFileRoute('/')({ component: App });
+export const Route = createFileRoute('/')({
+	component: App,
+	loader: async (ctx) => {
+		// Extract name from search params
+		const name = (ctx.location.search as { name?: string })?.name;
+
+		if (name) {
+			// @ts-expect-error - createServerFn types don't properly infer data parameter
+			return sayHello({ data: { name } });
+		}
+
+		return sayHello();
+	}
+});
 
 function App() {
+	const data = Route.useLoaderData();
+
 	const features = [
+		{
+			icon: <Network className="w-12 h-12 text-cyan-400" />,
+			title: 'Worker RPC Integration',
+			description:
+				'Type-safe RPC calls from TanStack Start to Cloudflare Workers via service bindings. Full end-to-end type safety.',
+		},
 		{
 			icon: <Zap className="w-12 h-12 text-cyan-400" />,
 			title: 'Powerful Server Functions',
@@ -19,8 +41,8 @@ function App() {
 		},
 		{
 			icon: <RouteIcon className="w-12 h-12 text-cyan-400" />,
-			title: 'API Routes',
-			description: 'Build type-safe API endpoints alongside your application. No separate backend needed.',
+			title: 'HTTP API Routes',
+			description: 'Access Cloudflare Worker HTTP endpoints at /api/* routes or use type-safe RPC calls.',
 		},
 		{
 			icon: <Shield className="w-12 h-12 text-cyan-400" />,
@@ -28,15 +50,10 @@ function App() {
 			description: 'End-to-end type safety from server to client. Catch errors before they reach production.',
 		},
 		{
-			icon: <Waves className="w-12 h-12 text-cyan-400" />,
-			title: 'Full Streaming Support',
+			icon: <Package className="w-12 h-12 text-cyan-400" />,
+			title: 'Monorepo Template',
 			description:
-				'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-		},
-		{
-			icon: <Sparkles className="w-12 h-12 text-cyan-400" />,
-			title: 'Next Generation Ready',
-			description: 'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
+				'Full-stack pnpm workspace with separate Worker and Web packages. Share types across the stack seamlessly.',
 		},
 	];
 
@@ -52,25 +69,53 @@ function App() {
 							<span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">START</span>
 						</h1>
 					</div>
-					<p className="text-2xl md:text-3xl text-gray-300 mb-4 font-light">
-						The framework for next generation AI applications
-					</p>
+					<a
+						href="https://github.com/roerohan/fullstack-monorepo-template"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="text-2xl md:text-3xl text-gray-300 mb-4 font-light hover:text-cyan-400 transition-colors inline-block"
+					>
+						roerohan/fullstack-monorepo-template
+					</a>
 					<p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-						Full-stack framework powered by TanStack Router for React and Solid. Build modern applications with server
-						functions, streaming, and type safety.
+						TanStack Start + Cloudflare Workers monorepo. Build modern fullstack applications with type-safe RPC,
+						server functions, and edge deployment.
 					</p>
+
+					<div className="mb-8 p-4 bg-slate-800/70 border border-cyan-500/30 rounded-lg max-w-2xl mx-auto">
+						<p className="text-sm text-gray-400 mb-2">Live RPC Demo:</p>
+						<p className="text-lg text-cyan-400 font-mono">{JSON.stringify(data)}</p>
+						<p className="text-xs text-gray-500 mt-2">
+							Called <code className="text-cyan-400">WORKER_RPC.sayHello()</code> from server loader •{' '}
+							<Link to="/rpc" className="text-cyan-400 hover:text-cyan-300 underline">
+								View more RPC examples at /rpc
+							</Link>
+						</p>
+					</div>
+
 					<div className="flex flex-col items-center gap-4">
-						<a
-							href="https://tanstack.com/start"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50"
-						>
-							Documentation
-						</a>
+						<div className="flex gap-3 flex-wrap justify-center">
+							<a
+								href="https://tanstack.com/start"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50"
+							>
+								TanStack Docs
+							</a>
+							<a
+								href="https://developers.cloudflare.com/workers"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-orange-500/50"
+							>
+								Cloudflare Workers
+							</a>
+						</div>
 						<p className="text-gray-400 text-sm mt-2">
-							Begin your TanStack Start journey by editing{' '}
-							<code className="px-2 py-1 bg-slate-700 rounded text-cyan-400">/src/routes/index.tsx</code>
+							Edit <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400">/src/routes/index.tsx</code> or add
+							RPC methods in{' '}
+							<code className="px-2 py-1 bg-slate-700 rounded text-orange-400">packages/worker/src/rpc.ts</code>
 						</p>
 					</div>
 				</div>
