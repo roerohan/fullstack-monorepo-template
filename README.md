@@ -109,7 +109,7 @@ To enable automatic deployments, add these secrets to your GitHub repository:
 
 1. Go to **Settings** → **Secrets and variables** → **Actions**
 2. Add the following secrets:
-   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token ([Create one here](https://dash.cloudflare.com/profile/api-tokens))
+   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token ([Create one here](https://dash.cloudflare.com/?to=/:account/api-tokens))
    - `CLOUDFLARE_ACCOUNT_ID` - Your Cloudflare account ID
 
 You can find your account ID in your Cloudflare dashboard URL: `https://dash.cloudflare.com/<ACCOUNT_ID>`
