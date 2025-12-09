@@ -91,6 +91,7 @@ This project includes two GitHub Actions workflows:
 ### PR Checks (`.github/workflows/pr-checks.yml`)
 
 Runs automatically on pull requests to `main`:
+
 - **Lint** - Checks code style and formatting (`pnpm lint`)
 - **Test** - Runs all tests (`pnpm test`)
 - **Type Check** - Validates TypeScript types for both packages
@@ -98,6 +99,7 @@ Runs automatically on pull requests to `main`:
 ### Deploy (`.github/workflows/deploy.yml`)
 
 Runs automatically on push to `main`:
+
 - **Deploy Worker** - Deploys backend worker to Cloudflare
 - **Deploy Web** - Deploys frontend worker to Cloudflare (after worker deploys)
 
