@@ -24,7 +24,7 @@ A fullstack monorepo template using pnpm workspaces with Cloudflare Workers for 
 
 ## Prerequisites
 
-- Node.js >= 18
+- Node.js >= 24
 - pnpm (`npm install -g pnpm`)
 - Cloudflare account (for deployment)
 
@@ -84,7 +84,37 @@ The worker will run on http://localhost:8787 and the web app on http://localhost
 - `pnpm --filter @fullstack-monorepo-template/web build` - Build for production
 - `pnpm --filter @fullstack-monorepo-template/web deploy` - Deploy to Cloudflare Workers
 
-## Deployment
+## CI/CD
+
+This project includes two GitHub Actions workflows:
+
+### PR Checks (`.github/workflows/pr-checks.yml`)
+
+Runs automatically on pull requests to `main`:
+- **Lint** - Checks code style and formatting (`pnpm lint`)
+- **Test** - Runs all tests (`pnpm test`)
+- **Type Check** - Validates TypeScript types for both packages
+
+### Deploy (`.github/workflows/deploy.yml`)
+
+Runs automatically on push to `main`:
+- **Deploy Worker** - Deploys backend worker to Cloudflare
+- **Deploy Web** - Deploys frontend worker to Cloudflare (after worker deploys)
+
+### Setup GitHub Secrets
+
+To enable automatic deployments, add these secrets to your GitHub repository:
+
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Add the following secrets:
+   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token ([Create one here](https://dash.cloudflare.com/profile/api-tokens))
+   - `CLOUDFLARE_ACCOUNT_ID` - Your Cloudflare account ID
+
+You can find your account ID in your Cloudflare dashboard URL: `https://dash.cloudflare.com/<ACCOUNT_ID>`
+
+**Note:** The API token needs `Workers Scripts:Edit` permissions for deployments.
+
+## Manual Deployment
 
 ### Worker
 

@@ -16,7 +16,7 @@ Thank you for considering contributing to this project! This document provides g
 
 ### Prerequisites
 
-- Node.js >= 18
+- Node.js >= 24
 - pnpm (`npm install -g pnpm`)
 - Git
 - A Cloudflare account (for deployment testing)

@@ -7,7 +7,7 @@
 		"dev": "vite dev --port 3000",
 		"build": "vite build",
 		"serve": "vite preview",
-		"test": "vitest run",
+		"test": "vitest run --passWithNoTests",
 		"deploy": "npm run build && wrangler deploy",
 		"preview": "npm run build && vite preview",
 		"cf-typegen": "wrangler types",
