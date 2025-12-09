@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.wrangler/
+
+# Generated files
+packages/web/src/routeTree.gen.ts
+packages/web/worker-configuration.d.ts
+
+# Logs
+*.log

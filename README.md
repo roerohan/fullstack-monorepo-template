@@ -32,7 +32,6 @@ A fullstack monorepo template using pnpm workspaces with a Cloudflare Worker bac
 1. **Customize package names** (optional):
 
    The template uses `@fullstack-monorepo-template/*` as the package scope. To customize for your project:
-
    - Find and replace `@fullstack-monorepo-template/` with `@your-project-name/` across the project
    - Update `packages/worker/package.json` name field
    - Update `packages/web/package.json` name field
@@ -136,23 +135,23 @@ export class WorkerRpc extends WorkerEntrypoint {
 ### In the Web App (TanStack Start routes)
 
 ```typescript
-import { createFileRoute } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/react-start'
-import { getWorkerRpc } from '@/lib/rpc'
+import { createFileRoute } from '@tanstack/react-router';
+import { createServerFn } from '@tanstack/react-start';
+import { getWorkerRpc } from '@/lib/rpc';
 
 const sayHello = createServerFn({ method: 'GET' }).handler(async () => {
-	const workerRpc = getWorkerRpc()
+	const workerRpc = getWorkerRpc();
 
 	// Call RPC methods with full type safety
-	const result = await workerRpc.sayHello('World')
+	const result = await workerRpc.sayHello('World');
 
-	return result
-})
+	return result;
+});
 
 export const Route = createFileRoute('/my-route')({
 	loader: async () => sayHello(),
 	component: MyComponent,
-})
+});
 ```
 
 ### Example RPC Routes

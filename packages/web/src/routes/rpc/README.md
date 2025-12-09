@@ -38,40 +38,48 @@ This creates a direct, type-safe connection to the worker's RPC class without go
 ## Available Endpoints
 
 ### `/rpc/say-hello`
+
 Returns a greeting message with timestamp.
 
 **Query Parameters:**
+
 - `name` (string, optional) - Name to greet (defaults to "World")
 
 **Example:**
+
 ```bash
 curl http://localhost:3000/rpc/say-hello?name=Alice
 ```
 
 **Response:**
+
 ```json
 {
-  "message": "Hello, Alice!",
-  "timestamp": 1234567890
+	"message": "Hello, Alice!",
+	"timestamp": 1234567890
 }
 ```
 
 ---
 
 ### `/rpc/calculate`
+
 Performs arithmetic operations.
 
 **Query Parameters:**
+
 - `operation` (string, required) - One of: `add`, `subtract`, `multiply`, `divide`
 - `a` (number, required) - First operand
 - `b` (number, required) - Second operand
 
 **Example:**
+
 ```bash
 curl http://localhost:3000/rpc/calculate?operation=multiply&a=7&b=6
 ```
 
 **Response:**
+
 ```json
 42
 ```
@@ -79,43 +87,51 @@ curl http://localhost:3000/rpc/calculate?operation=multiply&a=7&b=6
 ---
 
 ### `/rpc/get-data`
+
 Retrieves data by key (mock implementation).
 
 **Query Parameters:**
+
 - `key` (string, required) - Key to look up
 
 **Example:**
+
 ```bash
 curl http://localhost:3000/rpc/get-data?key=myKey
 ```
 
 **Response:**
+
 ```json
 {
-  "key": "myKey",
-  "found": false,
-  "value": undefined
+	"key": "myKey",
+	"found": false,
+	"value": undefined
 }
 ```
 
 ---
 
 ### `/rpc/process-batch`
+
 Processes a batch of items (converts to uppercase).
 
 **Query Parameters:**
+
 - `items` (string, required) - Comma-separated list of items
 
 **Example:**
+
 ```bash
 curl http://localhost:3000/rpc/process-batch?items=apple,banana,cherry
 ```
 
 **Response:**
+
 ```json
 {
-  "processed": 3,
-  "items": ["APPLE", "BANANA", "CHERRY"]
+	"processed": 3,
+	"items": ["APPLE", "BANANA", "CHERRY"]
 }
 ```
 
@@ -166,9 +182,9 @@ function RouteComponent() {
 Located in `packages/web/src/lib/rpc.ts`, this helper provides typed access to the Worker RPC binding:
 
 ```typescript
-import { getWorkerRpc } from '@/lib/rpc'
+import { getWorkerRpc } from '@/lib/rpc';
 
-const workerRpc = getWorkerRpc()
+const workerRpc = getWorkerRpc();
 // Now you have full TypeScript autocomplete for all RPC methods
 ```
 
@@ -177,6 +193,7 @@ This centralizes the type assertion needed due to environment type limitations.
 ## Adding New RPC Routes
 
 1. **Add the RPC method in the worker** (`packages/worker/src/rpc.ts`):
+
    ```typescript
    async myNewMethod(param: string): Promise<Result> {
      // implementation
@@ -184,14 +201,15 @@ This centralizes the type assertion needed due to environment type limitations.
    ```
 
 2. **Create a new route file** in this directory:
+
    ```typescript
    // packages/web/src/routes/rpc/my-new-method.tsx
-   import { getWorkerRpc } from '@/lib/rpc'
+   import { getWorkerRpc } from '@/lib/rpc';
 
    const myNewMethod = createServerFn({ method: 'GET' }).handler(async (ctx) => {
-     const workerRpc = getWorkerRpc()
-     return workerRpc.myNewMethod(ctx.data.param)
-   })
+   	const workerRpc = getWorkerRpc();
+   	return workerRpc.myNewMethod(ctx.data.param);
+   });
    ```
 
 3. **Types are automatically available** - TypeScript will know about your new method thanks to the type imports in `env.d.ts`
