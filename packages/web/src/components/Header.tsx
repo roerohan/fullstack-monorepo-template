@@ -9,18 +9,18 @@ export default function Header() {
 
 	return (
 		<>
-			<header className="p-4 flex items-center justify-between bg-gray-800 text-white shadow-lg">
-				<div className="flex items-center">
+			<header className="p-3 md:p-4 flex items-center justify-between bg-gray-800 text-white shadow-lg">
+				<div className="flex items-center min-w-0 flex-1">
 					<button
 						onClick={() => setIsOpen(true)}
-						className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+						className="p-2 hover:bg-gray-700 rounded-lg transition-colors flex-shrink-0"
 						aria-label="Open menu"
 					>
-						<Menu size={24} />
+						<Menu size={20} className="md:w-6 md:h-6" />
 					</button>
-					<h1 className="ml-4 text-xl font-semibold">
+					<h1 className="ml-2 md:ml-4 text-xl font-semibold min-w-0">
 						<Link to="/">
-							<img src="/tanstack-word-logo-white.svg" alt="TanStack Logo" className="h-10" />
+							<img src="/tanstack-word-logo-white.svg" alt="TanStack Logo" className="h-7 md:h-10" />
 						</Link>
 					</h1>
 				</div>
@@ -28,9 +28,9 @@ export default function Header() {
 					href="https://github.com/roerohan/fullstack-monorepo-template"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
+					className="px-2 py-1.5 md:px-4 md:py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm md:text-base font-medium rounded-lg transition-colors flex items-center gap-1 md:gap-2 flex-shrink-0"
 				>
-					<Star className="w-4 h-4" />
+					<Star className="w-3.5 h-3.5 md:w-4 md:h-4" />
 					<span className="hidden sm:inline">Star on GitHub</span>
 					<span className="sm:hidden">Star</span>
 				</a>
