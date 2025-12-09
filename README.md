@@ -29,19 +29,28 @@ A fullstack monorepo template using pnpm workspaces with a Cloudflare Worker bac
 
 ## Getting Started
 
-1. Install dependencies:
+1. **Customize package names** (optional):
+
+   The template uses `@fullstack-monorepo-template/*` as the package scope. To customize for your project:
+
+   - Find and replace `@fullstack-monorepo-template/` with `@your-project-name/` across the project
+   - Update `packages/worker/package.json` name field
+   - Update `packages/web/package.json` name field
+   - Update the service name in `packages/web/wrangler.jsonc` to match your worker name
+
+2. Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-2. Start the worker in development mode:
+3. Start the worker in development mode:
 
 ```bash
 pnpm dev:worker
 ```
 
-3. In a separate terminal, start the web app:
+4. In a separate terminal, start the web app:
 
 ```bash
 pnpm dev:web

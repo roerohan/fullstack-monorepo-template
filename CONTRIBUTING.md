@@ -61,13 +61,13 @@ To work on a specific package, use pnpm filters:
 
 ```bash
 # Add a dependency to the worker package
-pnpm --filter @monorepo/worker add package-name
+pnpm --filter @fullstack-monorepo-template/worker add package-name
 
 # Run tests for the web package
-pnpm --filter @monorepo/web test
+pnpm --filter @fullstack-monorepo-template/web test
 
 # Start development for a specific package
-pnpm --filter @monorepo/worker dev
+pnpm --filter @fullstack-monorepo-template/worker dev
 ```
 
 ### Running Tests
@@ -79,7 +79,7 @@ Before submitting a pull request, ensure all tests pass:
 pnpm test
 
 # Run tests for a specific package
-pnpm --filter @monorepo/worker test
+pnpm --filter @fullstack-monorepo-template/worker test
 
 # Run tests in watch mode (within package directory)
 cd packages/worker
@@ -190,10 +190,10 @@ Always specify the package when adding dependencies:
 
 ```bash
 # Add to worker package
-pnpm --filter @monorepo/worker add package-name
+pnpm --filter @fullstack-monorepo-template/worker add package-name
 
 # Add dev dependency to web package
-pnpm --filter @monorepo/web add -D package-name
+pnpm --filter @fullstack-monorepo-template/web add -D package-name
 
 # Add to root (for shared tooling like ESLint)
 pnpm add -D package-name -w

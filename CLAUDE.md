@@ -63,8 +63,8 @@ pnpm dev:worker    # Worker on localhost:8787
 pnpm dev:web       # Web on localhost:3000
 
 # Or run just one
-pnpm --filter @monorepo/worker dev
-pnpm --filter @monorepo/web dev
+pnpm --filter @fullstack-monorepo-template/worker dev
+pnpm --filter @fullstack-monorepo-template/web dev
 ```
 
 ### Testing
@@ -74,8 +74,8 @@ pnpm --filter @monorepo/web dev
 pnpm test
 
 # Run tests for specific package
-pnpm --filter @monorepo/worker test
-pnpm --filter @monorepo/web test
+pnpm --filter @fullstack-monorepo-template/worker test
+pnpm --filter @fullstack-monorepo-template/web test
 
 # Run tests in watch mode (within package directory)
 cd packages/worker && pnpm test --watch
@@ -108,11 +108,11 @@ cd packages/worker && pnpm wrangler login
 
 ```bash
 # Add dependency to specific package
-pnpm --filter @monorepo/worker add <package-name>
-pnpm --filter @monorepo/web add <package-name>
+pnpm --filter @fullstack-monorepo-template/worker add <package-name>
+pnpm --filter @fullstack-monorepo-template/web add <package-name>
 
 # Add dev dependency
-pnpm --filter @monorepo/worker add -D <package-name>
+pnpm --filter @fullstack-monorepo-template/worker add -D <package-name>
 ```
 
 ## Adding New RPC Methods
@@ -213,12 +213,12 @@ This ensures these packages are built correctly in the monorepo context.
 
 ## Package Naming Convention
 
-Packages use the `@monorepo/*` scope:
+Packages use the `@fullstack-monorepo-template/*` scope:
 
-- `@monorepo/worker`
-- `@monorepo/web`
+- `@fullstack-monorepo-template/worker`
+- `@fullstack-monorepo-template/web`
 
-When filtering commands, use these exact names: `pnpm --filter @monorepo/worker <command>`
+When filtering commands, use these exact names: `pnpm --filter @fullstack-monorepo-template/worker <command>`
 
 ## ESLint Configuration
 
