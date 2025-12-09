@@ -1,24 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { env } from 'cloudflare:workers'
-import type { WorkerRpc } from '../../../worker/src/rpc'
+import { getWorkerRpc } from '@/lib/rpc'
 
 interface SayHelloData {
   name: string
 }
 
 const sayHello = createServerFn({ method: 'GET' }).handler(async (ctx: { data?: SayHelloData }) => {
-  const WORKER_RPC = env.WORKER_RPC as unknown as WorkerRpc
+  const workerRpc = getWorkerRpc()
 
   // Get the name from the context data
   const data = ctx.data as SayHelloData | undefined
   const name = data?.name || 'World'
 
   // Call the RPC method from the worker
-  return WORKER_RPC.sayHello(name)
+  return workerRpc.sayHello(name)
 })
 
-export const Route = createFileRoute('/api/say-hello')({
+export const Route = createFileRoute('/rpc/say-hello')({
   loader: async (ctx) => {
     // Extract name from search params using ctx.location.search
     const name = (ctx.location.search as { name?: string })?.name || 'World'
