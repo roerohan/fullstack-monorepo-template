@@ -1,14 +1,14 @@
 # Fullstack Monorepo Template
 
-A fullstack monorepo template using pnpm workspaces with a Cloudflare Worker backend and TanStack Start frontend.
+A fullstack monorepo template using pnpm workspaces with Cloudflare Workers for both backend and frontend (TanStack Start with SSR).
 
 ## Project Structure
 
 ```
 .
 ├── packages/
-│   ├── worker/         # Cloudflare Worker API (Hono + RPC)
-│   └── web/            # TanStack Start web app
+│   ├── worker/         # Backend Cloudflare Worker (Hono + RPC)
+│   └── web/            # Frontend Cloudflare Worker (TanStack Start with SSR)
 ├── package.json        # Root package.json with workspace scripts
 └── pnpm-workspace.yaml # pnpm workspace configuration
 ```
@@ -16,10 +16,11 @@ A fullstack monorepo template using pnpm workspaces with a Cloudflare Worker bac
 ## Features
 
 - **Worker RPC**: Service bindings enable type-safe RPC calls from web to worker
-- **Hono API**: REST API endpoints in the worker
-- **TanStack Start**: Modern React framework with SSR
+- **Hono API**: REST API endpoints in the backend worker
+- **TanStack Start**: Modern React framework with SSR deployed on Cloudflare Workers
 - **Type Safety**: Full TypeScript support across packages
 - **Monorepo**: Shared dependencies and scripts via pnpm workspaces
+- **Deploy to Workers**: Both packages deploy as Cloudflare Workers for optimal performance
 
 ## Prerequisites
 
@@ -81,7 +82,7 @@ The worker will run on http://localhost:8787 and the web app on http://localhost
 
 - `pnpm --filter @fullstack-monorepo-template/web dev` - Start in development mode
 - `pnpm --filter @fullstack-monorepo-template/web build` - Build for production
-- `pnpm --filter @fullstack-monorepo-template/web deploy` - Deploy to Cloudflare Pages
+- `pnpm --filter @fullstack-monorepo-template/web deploy` - Deploy to Cloudflare Workers
 
 ## Deployment
 
@@ -104,18 +105,21 @@ pnpm deploy:worker
 
 ### Web App
 
-1. Build and deploy to Cloudflare Pages:
+The web app is deployed as a Cloudflare Worker (not Pages), which enables server-side rendering and RPC communication with the backend worker.
 
-```bash
-pnpm deploy:web
-```
-
-Or deploy to any static hosting service:
+1. Login to Cloudflare (if not already done):
 
 ```bash
 cd packages/web
-pnpm build
-# Upload dist/ directory to your hosting service
+pnpm wrangler login
+```
+
+2. Update `wrangler.jsonc` with your account details
+
+3. Deploy:
+
+```bash
+pnpm deploy:web
 ```
 
 ## Using Worker RPC
@@ -177,15 +181,15 @@ See `packages/web/src/routes/rpc/README.md` for detailed documentation on the RP
 
 ### Web App
 
-- `packages/web/wrangler.jsonc` - Cloudflare Pages configuration (includes service binding)
+- `packages/web/wrangler.jsonc` - Cloudflare Workers configuration (includes service binding)
 - `packages/web/vite.config.ts` - Vite configuration
 - `packages/web/src/routes/` - TanStack Start routes
 
 ## Tech Stack
 
 - **Monorepo**: pnpm workspaces
-- **Worker**: Cloudflare Workers, Hono, WorkerEntrypoint (RPC), TypeScript
-- **Web**: TanStack Start, React, TypeScript
+- **Backend Worker**: Cloudflare Workers, Hono, WorkerEntrypoint (RPC), TypeScript
+- **Frontend Worker**: Cloudflare Workers, TanStack Start (SSR), React, TypeScript
 - **Testing**: Vitest
 - **Linting**: ESLint, Prettier
 
