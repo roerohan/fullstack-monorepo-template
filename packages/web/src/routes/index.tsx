@@ -117,7 +117,7 @@ function App() {
 						<p className="text-gray-400 text-sm mt-2">
 							Edit <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400">/src/routes/index.tsx</code> or add
 							RPC methods in{' '}
-							<code className="px-2 py-1 bg-slate-700 rounded text-orange-400">packages/worker/src/rpc.ts</code>
+							<code className="px-2 py-1 bg-slate-700 rounded text-orange-400">/packages/worker/src/rpc.ts</code>
 						</p>
 					</div>
 				</div>
