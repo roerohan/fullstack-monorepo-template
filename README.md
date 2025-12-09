@@ -65,15 +65,15 @@ The worker will run on http://localhost:8787 and the web app on http://localhost
 
 ### Worker Package
 
-- `pnpm --filter @monorepo/worker dev` - Start in development mode
-- `pnpm --filter @monorepo/worker deploy` - Deploy to Cloudflare
-- `pnpm --filter @monorepo/worker test` - Run tests
+- `pnpm --filter @fullstack-monorepo-template/worker dev` - Start in development mode
+- `pnpm --filter @fullstack-monorepo-template/worker deploy` - Deploy to Cloudflare
+- `pnpm --filter @fullstack-monorepo-template/worker test` - Run tests
 
 ### Web Package
 
-- `pnpm --filter @monorepo/web dev` - Start in development mode
-- `pnpm --filter @monorepo/web build` - Build for production
-- `pnpm --filter @monorepo/web deploy` - Deploy to Cloudflare Pages
+- `pnpm --filter @fullstack-monorepo-template/web dev` - Start in development mode
+- `pnpm --filter @fullstack-monorepo-template/web build` - Build for production
+- `pnpm --filter @fullstack-monorepo-template/web deploy` - Deploy to Cloudflare Pages
 
 ## Deployment
 
