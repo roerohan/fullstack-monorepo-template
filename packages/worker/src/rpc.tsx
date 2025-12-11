@@ -88,7 +88,7 @@ export class WorkerRpc extends WorkerEntrypoint {
 		for (const key of Object.keys(this.env)) {
 			// Filter out internal bindings
 			if (!key.startsWith('ASSETS') && !key.includes('__')) {
-				const value = this.env[key];
+				const value = (this.env as Record<string, unknown>)[key];
 				// Only show string values for safety
 				if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
 					envEntries.push({ key, value: String(value) });
