@@ -14,6 +14,7 @@ import { Route as RpcIndexRouteImport } from './routes/rpc/index'
 import { Route as RpcSayHelloRouteImport } from './routes/rpc/say-hello'
 import { Route as RpcProcessBatchRouteImport } from './routes/rpc/process-batch'
 import { Route as RpcGetDataRouteImport } from './routes/rpc/get-data'
+import { Route as RpcGetComponentRouteImport } from './routes/rpc/get-component'
 import { Route as RpcCalculateRouteImport } from './routes/rpc/calculate'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
@@ -46,6 +47,11 @@ const RpcProcessBatchRoute = RpcProcessBatchRouteImport.update({
 const RpcGetDataRoute = RpcGetDataRouteImport.update({
   id: '/rpc/get-data',
   path: '/rpc/get-data',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RpcGetComponentRoute = RpcGetComponentRouteImport.update({
+  id: '/rpc/get-component',
+  path: '/rpc/get-component',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RpcCalculateRoute = RpcCalculateRouteImport.update({
@@ -92,6 +98,7 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/rpc/calculate': typeof RpcCalculateRoute
+  '/rpc/get-component': typeof RpcGetComponentRoute
   '/rpc/get-data': typeof RpcGetDataRoute
   '/rpc/process-batch': typeof RpcProcessBatchRoute
   '/rpc/say-hello': typeof RpcSayHelloRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/rpc/calculate': typeof RpcCalculateRoute
+  '/rpc/get-component': typeof RpcGetComponentRoute
   '/rpc/get-data': typeof RpcGetDataRoute
   '/rpc/process-batch': typeof RpcProcessBatchRoute
   '/rpc/say-hello': typeof RpcSayHelloRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/rpc/calculate': typeof RpcCalculateRoute
+  '/rpc/get-component': typeof RpcGetComponentRoute
   '/rpc/get-data': typeof RpcGetDataRoute
   '/rpc/process-batch': typeof RpcProcessBatchRoute
   '/rpc/say-hello': typeof RpcSayHelloRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/rpc/calculate'
+    | '/rpc/get-component'
     | '/rpc/get-data'
     | '/rpc/process-batch'
     | '/rpc/say-hello'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/rpc/calculate'
+    | '/rpc/get-component'
     | '/rpc/get-data'
     | '/rpc/process-batch'
     | '/rpc/say-hello'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/rpc/calculate'
+    | '/rpc/get-component'
     | '/rpc/get-data'
     | '/rpc/process-batch'
     | '/rpc/say-hello'
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RpcCalculateRoute: typeof RpcCalculateRoute
+  RpcGetComponentRoute: typeof RpcGetComponentRoute
   RpcGetDataRoute: typeof RpcGetDataRoute
   RpcProcessBatchRoute: typeof RpcProcessBatchRoute
   RpcSayHelloRoute: typeof RpcSayHelloRoute
@@ -234,6 +247,13 @@ declare module '@tanstack/react-router' {
       path: '/rpc/get-data'
       fullPath: '/rpc/get-data'
       preLoaderRoute: typeof RpcGetDataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rpc/get-component': {
+      id: '/rpc/get-component'
+      path: '/rpc/get-component'
+      fullPath: '/rpc/get-component'
+      preLoaderRoute: typeof RpcGetComponentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rpc/calculate': {
@@ -298,6 +318,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RpcCalculateRoute: RpcCalculateRoute,
+  RpcGetComponentRoute: RpcGetComponentRoute,
   RpcGetDataRoute: RpcGetDataRoute,
   RpcProcessBatchRoute: RpcProcessBatchRoute,
   RpcSayHelloRoute: RpcSayHelloRoute,

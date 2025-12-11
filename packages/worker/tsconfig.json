@@ -30,7 +30,7 @@
 		"strict": true,
 		/* Skip type checking all .d.ts files. */
 		"skipLibCheck": true,
-		"types": ["@cloudflare/workers-types", "@types/node"]
+		"types": ["@cloudflare/workers-types", "@types/node", "@types/react"]
 	},
-	"include": ["src/**/*.ts", "*.mts", "*.ts"]
+	"include": ["src/**/*.ts", "src/**/*.tsx", "*.mts", "*.ts"]
 }

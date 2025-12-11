@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { Network, Calculator, Database, Package2, ArrowRight } from 'lucide-react';
+import { Network, Calculator, Database, Package2, ArrowRight, Component } from 'lucide-react';
 
 export const Route = createFileRoute('/rpc/')({
 	component: RouteComponent,
@@ -39,6 +39,14 @@ function RouteComponent() {
 			signature: 'processBatch(items: string[]): Promise<{ processed: number; items: string[] }>',
 			example: '/rpc/process-batch',
 		},
+		{
+			name: 'getComponent',
+			path: '/rpc/get-component',
+			icon: <Component className="w-8 h-8 text-orange-400" />,
+			description: 'Returns JSX with server-side fetched data (external APIs, env vars) - browser never sees these requests!',
+			signature: 'getComponent(): Promise<SerializableNode>',
+			example: '/rpc/get-component',
+		},
 	];
 
 	return (
@@ -55,7 +63,7 @@ function RouteComponent() {
 					</p>
 					<p className="text-gray-500">
 						All methods are defined in{' '}
-						<code className="px-2 py-1 bg-slate-700 rounded text-orange-400">packages/worker/src/rpc.ts</code>
+						<code className="px-2 py-1 bg-slate-700 rounded text-orange-400">packages/worker/src/rpc.tsx</code>
 					</p>
 				</div>
 
@@ -92,7 +100,7 @@ function RouteComponent() {
 					<ol className="list-decimal list-inside space-y-2 text-gray-400">
 						<li>
 							Add your method to the <code className="text-orange-400">WorkerRpc</code> class in{' '}
-							<code className="text-orange-400">packages/worker/src/rpc.ts</code>
+							<code className="text-orange-400">packages/worker/src/rpc.tsx</code>
 						</li>
 						<li>
 							TypeScript will automatically provide types in the web package via{' '}
