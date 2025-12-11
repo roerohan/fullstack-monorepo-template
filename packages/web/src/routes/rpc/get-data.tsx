@@ -53,10 +53,12 @@ function RouteComponent() {
 						<h2 className="text-xl font-semibold text-cyan-400 mb-3">Usage Examples</h2>
 						<div className="space-y-2">
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?key=user123</code> → Fetch data for key "user123"
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?key=user123</code> → Fetch data for key
+								"user123"
 							</p>
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?key=config</code> → Fetch data for key "config"
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?key=config</code> → Fetch data for key
+								"config"
 							</p>
 							<p className="text-gray-400 text-sm mt-4">
 								💡 This is a mock implementation. Connect to Cloudflare KV, D1, or R2 by adding bindings to{' '}

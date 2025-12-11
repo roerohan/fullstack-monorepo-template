@@ -14,7 +14,7 @@ export const Route = createFileRoute('/')({
 		}
 
 		return sayHello();
-	}
+	},
 });
 
 function App() {
@@ -63,7 +63,11 @@ function App() {
 				<div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"></div>
 				<div className="relative max-w-5xl mx-auto">
 					<div className="flex flex-col items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6">
-						<img src="/tanstack-circle-logo.png" alt="TanStack Logo" className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32" />
+						<img
+							src="/tanstack-circle-logo.png"
+							alt="TanStack Logo"
+							className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32"
+						/>
 						<div className="flex flex-col items-center">
 							<h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white [letter-spacing:-0.08em]">
 								<span className="text-gray-300">TANSTACK</span>{' '}
@@ -80,8 +84,8 @@ function App() {
 						</div>
 					</div>
 					<p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-3xl mx-auto mb-6 md:mb-8 px-2">
-						TanStack Start + Cloudflare Workers monorepo. Build modern fullstack applications with type-safe RPC,
-						server functions, and edge deployment.
+						TanStack Start + Cloudflare Workers monorepo. Build modern fullstack applications with type-safe RPC, server
+						functions, and edge deployment.
 					</p>
 
 					<div className="mb-6 md:mb-8 p-3 md:p-4 bg-slate-800/70 border border-cyan-500/30 rounded-lg max-w-2xl mx-auto">
@@ -115,9 +119,11 @@ function App() {
 							</a>
 						</div>
 						<p className="text-gray-400 text-xs sm:text-sm mt-2 px-4 text-center">
-							Edit <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400 text-xs">/src/routes/index.tsx</code> or add
-							RPC methods in{' '}
-							<code className="px-2 py-1 bg-slate-700 rounded text-orange-400 text-xs break-all">/packages/worker/src/rpc.ts</code>
+							Edit <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400 text-xs">/src/routes/index.tsx</code>{' '}
+							or add RPC methods in{' '}
+							<code className="px-2 py-1 bg-slate-700 rounded text-orange-400 text-xs break-all">
+								/packages/worker/src/rpc.ts
+							</code>
 						</p>
 					</div>
 				</div>

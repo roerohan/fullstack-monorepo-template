@@ -54,7 +54,8 @@ function RouteComponent() {
 								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?name=Bob</code> → Say hello to Bob
 							</p>
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">(no parameter)</code> → Defaults to "World"
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">(no parameter)</code> → Defaults to
+								"World"
 							</p>
 						</div>
 					</div>

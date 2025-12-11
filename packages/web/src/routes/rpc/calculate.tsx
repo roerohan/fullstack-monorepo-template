@@ -56,16 +56,20 @@ function RouteComponent() {
 						<h2 className="text-xl font-semibold text-cyan-400 mb-3">Usage Examples</h2>
 						<div className="space-y-2">
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=add&a=10&b=20</code> → Addition
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=add&a=10&b=20</code> →
+								Addition
 							</p>
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=subtract&a=50&b=15</code> → Subtraction
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=subtract&a=50&b=15</code> →
+								Subtraction
 							</p>
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=multiply&a=7&b=8</code> → Multiplication
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=multiply&a=7&b=8</code> →
+								Multiplication
 							</p>
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=divide&a=100&b=5</code> → Division
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?operation=divide&a=100&b=5</code> →
+								Division
 							</p>
 						</div>
 					</div>

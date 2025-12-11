@@ -9,11 +9,13 @@
 		"@cloudflare/vitest-pool-workers": "^0.10.3",
 		"@cloudflare/workers-types": "^4.20250922.0",
 		"@types/node": "^18.0.0",
+		"@types/react": "^19.2.2",
 		"vitest": "~3.0.9",
 		"wrangler": "^4.45.3"
 	},
 	"dependencies": {
-		"hono": "^4.10.4"
+		"hono": "^4.10.4",
+		"react": "^19.2.0"
 	},
 	"scripts": {
 		"dev": "wrangler dev",
