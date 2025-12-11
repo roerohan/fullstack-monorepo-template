@@ -43,7 +43,8 @@ function RouteComponent() {
 			name: 'getComponent',
 			path: '/rpc/get-component',
 			icon: <Component className="w-8 h-8 text-orange-400" />,
-			description: 'Returns JSX with server-side fetched data (external APIs, env vars) - browser never sees these requests!',
+			description:
+				'Returns JSX with server-side fetched data (external APIs, env vars) - browser never sees these requests!',
 			signature: 'getComponent(): Promise<SerializableNode>',
 			example: '/rpc/get-component',
 		},
@@ -107,8 +108,7 @@ function RouteComponent() {
 							<code className="text-cyan-400">packages/web/env.d.ts</code>
 						</li>
 						<li>
-							Create a route in <code className="text-cyan-400">packages/web/src/routes/rpc/</code> to call your
-							method
+							Create a route in <code className="text-cyan-400">packages/web/src/routes/rpc/</code> to call your method
 						</li>
 						<li>
 							Use <code className="text-cyan-400">getWorkerRpc()</code> helper to access the typed RPC binding

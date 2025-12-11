@@ -5,6 +5,7 @@ import React, { ReactNode } from 'react';
  */
 export interface SerializableElement {
 	type: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	props: Record<string, any>;
 	children?: SerializableNode[];
 }
@@ -16,7 +17,13 @@ export type SerializableNode = SerializableElement | string | number | boolean |
  */
 export function deserializeJSX(node: SerializableNode): ReactNode {
 	// Handle primitives
-	if (node === null || node === undefined || typeof node === 'string' || typeof node === 'number' || typeof node === 'boolean') {
+	if (
+		node === null ||
+		node === undefined ||
+		typeof node === 'string' ||
+		typeof node === 'number' ||
+		typeof node === 'boolean'
+	) {
 		return node;
 	}
 

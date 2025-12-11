@@ -76,7 +76,7 @@ export class WorkerRpc extends WorkerEntrypoint {
 		try {
 			// Fetch the worker's public IP (this happens on the server, not in the browser)
 			const ipResponse = await fetch('https://api.ipify.org?format=json');
-			const ipData = await ipResponse.json() as { ip: string };
+			const ipData = (await ipResponse.json()) as { ip: string };
 			workerIp = ipData.ip;
 		} catch (error) {
 			console.error('Failed to fetch worker IP:', error);
@@ -103,19 +103,23 @@ export class WorkerRpc extends WorkerEntrypoint {
 
 		// Define your JSX here - it includes worker-ONLY data fetched server-side
 		const component = (
-			<div style={{
-				padding: '24px',
-				border: '2px solid #f97316',
-				borderRadius: '12px',
-				background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
-				color: '#fff'
-			}}>
-				<h2 style={{
-					color: '#fb923c',
-					marginBottom: '16px',
-					fontSize: '24px',
-					fontWeight: 'bold'
-				}}>
+			<div
+				style={{
+					padding: '24px',
+					border: '2px solid #f97316',
+					borderRadius: '12px',
+					background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+					color: '#fff',
+				}}
+			>
+				<h2
+					style={{
+						color: '#fb923c',
+						marginBottom: '16px',
+						fontSize: '24px',
+						fontWeight: 'bold',
+					}}
+				>
 					🔥 Generated in Cloudflare Worker (Server-Side Only!)
 				</h2>
 				<p style={{ marginBottom: '12px', color: '#e2e8f0' }}>
@@ -123,39 +127,45 @@ export class WorkerRpc extends WorkerEntrypoint {
 				</p>
 
 				{/* Server-side API calls section */}
-				<div style={{
-					background: '#0f172a',
-					padding: '16px',
-					borderRadius: '8px',
-					marginTop: '16px',
-					marginBottom: '16px'
-				}}>
+				<div
+					style={{
+						background: '#0f172a',
+						padding: '16px',
+						borderRadius: '8px',
+						marginTop: '16px',
+						marginBottom: '16px',
+					}}
+				>
 					<strong style={{ color: '#fb923c', display: 'block', marginBottom: '8px' }}>
 						🌐 Worker's Public IP Address
 					</strong>
 					<p style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '6px' }}>
 						Fetched from api.ipify.org (server-side, no CORS!)
 					</p>
-					<div style={{
-						color: '#fff',
-						fontFamily: 'monospace',
-						fontSize: '16px',
-						background: '#1e293b',
-						padding: '8px 12px',
-						borderRadius: '4px',
-						border: '1px solid #fb923c'
-					}}>
+					<div
+						style={{
+							color: '#fff',
+							fontFamily: 'monospace',
+							fontSize: '16px',
+							background: '#1e293b',
+							padding: '8px 12px',
+							borderRadius: '4px',
+							border: '1px solid #fb923c',
+						}}
+					>
 						{workerIp}
 					</div>
 				</div>
 
 				{/* Environment variables section */}
-				<div style={{
-					background: '#0f172a',
-					padding: '16px',
-					borderRadius: '8px',
-					marginBottom: '16px'
-				}}>
+				<div
+					style={{
+						background: '#0f172a',
+						padding: '16px',
+						borderRadius: '8px',
+						marginBottom: '16px',
+					}}
+				>
 					<strong style={{ color: '#fb923c', display: 'block', marginBottom: '8px' }}>
 						🔐 Environment Variables Access
 					</strong>
@@ -172,15 +182,13 @@ export class WorkerRpc extends WorkerEntrypoint {
 											background: '#1e293b',
 											padding: '10px',
 											borderRadius: '4px',
-											border: '1px solid #fb923c'
+											border: '1px solid #fb923c',
 										}}
 									>
 										<div style={{ fontFamily: 'monospace', fontSize: '13px', color: '#fb923c', marginBottom: '4px' }}>
 											{entry.key}
 										</div>
-										<div style={{ fontFamily: 'monospace', fontSize: '14px', color: '#e2e8f0' }}>
-											{entry.value}
-										</div>
+										<div style={{ fontFamily: 'monospace', fontSize: '14px', color: '#e2e8f0' }}>{entry.value}</div>
 									</div>
 								))}
 							</div>
@@ -193,45 +201,51 @@ export class WorkerRpc extends WorkerEntrypoint {
 				</div>
 
 				{/* Metadata section */}
-				<div style={{
-					background: '#0f172a',
-					padding: '16px',
-					borderRadius: '8px',
-					marginBottom: '16px'
-				}}>
-					<strong style={{ color: '#fb923c', display: 'block', marginBottom: '8px' }}>
-						⏰ Server-Side Timestamp
-					</strong>
-					<div style={{
-						color: '#94a3b8',
-						fontFamily: 'monospace',
-						fontSize: '14px'
-					}}>
+				<div
+					style={{
+						background: '#0f172a',
+						padding: '16px',
+						borderRadius: '8px',
+						marginBottom: '16px',
+					}}
+				>
+					<strong style={{ color: '#fb923c', display: 'block', marginBottom: '8px' }}>⏰ Server-Side Timestamp</strong>
+					<div
+						style={{
+							color: '#94a3b8',
+							fontFamily: 'monospace',
+							fontSize: '14px',
+						}}
+					>
 						{date.toISOString()}
 					</div>
 				</div>
 
-				<ul style={{
-					marginTop: '16px',
-					paddingLeft: '20px',
-					color: '#cbd5e1',
-					fontSize: '14px'
-				}}>
+				<ul
+					style={{
+						marginTop: '16px',
+						paddingLeft: '20px',
+						color: '#cbd5e1',
+						fontSize: '14px',
+					}}
+				>
 					<li style={{ marginBottom: '8px' }}>✅ Server-side fetch() calls (no CORS!)</li>
 					<li style={{ marginBottom: '8px' }}>✅ Access to environment variables</li>
 					<li style={{ marginBottom: '8px' }}>✅ Worker execution context</li>
 					<li style={{ marginBottom: '8px' }}>✅ JSX serialization & deserialization</li>
 				</ul>
 
-				<p style={{
-					marginTop: '16px',
-					fontSize: '12px',
-					color: '#64748b',
-					fontStyle: 'italic',
-					background: '#1e293b',
-					padding: '8px',
-					borderRadius: '4px'
-				}}>
+				<p
+					style={{
+						marginTop: '16px',
+						fontSize: '12px',
+						color: '#64748b',
+						fontStyle: 'italic',
+						background: '#1e293b',
+						padding: '8px',
+						borderRadius: '4px',
+					}}
+				>
 					💡 Refresh the page to see new data! The browser never makes the external API call to ipify.org.
 				</p>
 			</div>

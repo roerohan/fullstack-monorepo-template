@@ -5,6 +5,7 @@ import type { ReactElement, ReactNode } from 'react';
  */
 export interface SerializableElement {
 	type: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	props: Record<string, any>;
 	children?: SerializableNode[];
 }
@@ -30,9 +31,9 @@ export function serializeJSX(node: ReactNode): SerializableNode {
 	if (Array.isArray(node)) {
 		// For arrays, we serialize each child and return the first element if single, or null
 		// In practice, React fragments are rendered as arrays, so we handle the children individually
-		const serialized = node.map(serializeJSX).filter((child): child is NonNullable<SerializableNode> =>
-			child !== null && child !== undefined
-		);
+		const serialized = node
+			.map(serializeJSX)
+			.filter((child): child is NonNullable<SerializableNode> => child !== null && child !== undefined);
 		// If there's only one element, return it directly
 		if (serialized.length === 1) {
 			return serialized[0];
@@ -51,6 +52,7 @@ export function serializeJSX(node: ReactNode): SerializableNode {
 	// Handle React elements
 	if (typeof node === 'object' && 'type' in node && 'props' in node) {
 		const element = node as ReactElement;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const { children, ...restProps } = element.props as { children?: ReactNode; [key: string]: any };
 
 		const serialized: SerializableElement = {
