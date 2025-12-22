@@ -2,6 +2,41 @@
 
 This file provides guidance to AI coding agents when working with code in this repository.
 
+## IMPORTANT: This is a Template Repository
+
+**You MUST read this section carefully before making any changes.**
+
+### Determining Context: Template vs Application
+
+Check the current working directory name:
+
+- **If directory is `fullstack-monorepo-template`**: You are working on the template itself. Keep all demo content and examples intact.
+- **If directory is anything else**: You are working on an application built from this template. You MUST clean up template artifacts before implementing features.
+
+### When Working on an Application (NOT the template)
+
+Before implementing any features, you MUST:
+
+1. **Delete demo/example content**:
+   - `packages/web/src/routes/demo/` - All demo routes
+   - `packages/web/src/data/` - Demo data files
+   - `packages/web/src/routes/rpc/` - Example RPC route files (but keep the pattern in mind)
+   - Any other placeholder or example code
+
+2. **Remove template styling**:
+   - Do NOT use TanStack-specific theming, logos, or branding
+   - Replace placeholder styles with application-specific styling
+   - Remove TanStack logo files from `packages/web/public/` if not needed
+   - **Keep TanStack Router DevTools** - The development debugging tools are useful and should remain
+
+3. **Update package names** in `package.json` files from `@fullstack-monorepo-template/*` to match the application name
+
+4. **Update service binding names** in `wrangler.jsonc` files to match the application name (replace `fullstack-monorepo-template-worker`)
+
+### When Working on the Template Itself
+
+Keep all demo content intact as it serves as reference examples for users of the template.
+
 ## Monorepo Architecture
 
 This is a pnpm workspace monorepo with two packages:
@@ -42,16 +77,20 @@ import type { WorkerRpc } from '../worker/src/rpc';
 
 This creates a **direct TypeScript dependency** between packages. The monorepo structure enables this cross-package type sharing.
 
-### TanStack Start Server Context
+### Calling Worker RPC Methods
 
-In TanStack Start server functions/loaders, access the RPC binding via:
+**CORRECT way to access Worker RPC** in TanStack Start server functions:
 
 ```typescript
-import { getServerContext } from '@tanstack/react-start/server';
+import { getWorkerRpc } from '@/lib/rpc';
 
-const { WORKER_RPC } = getServerContext().cloudflare.env;
-const result = await WORKER_RPC.sayHello('World');
+const workerRpc = getWorkerRpc();
+const result = await workerRpc.sayHello('World');
 ```
+
+**DO NOT use** `getServerContext().cloudflare.env` - this is incorrect. Always use the `getWorkerRpc()` helper from `@/lib/rpc.ts`.
+
+See `packages/web/src/routes/rpc/` for complete examples of proper RPC usage patterns.
 
 ## Commands
 
@@ -134,8 +173,10 @@ export class WorkerRpc extends WorkerEntrypoint {
 3. **Call from web package** in any server function:
 
 ```typescript
-const { WORKER_RPC } = getServerContext().cloudflare.env;
-const result = await WORKER_RPC.myNewMethod('value');
+import { getWorkerRpc } from '@/lib/rpc';
+
+const workerRpc = getWorkerRpc();
+const result = await workerRpc.myNewMethod('value');
 ```
 
 4. **Optional**: Add helper function in `packages/web/src/lib/worker-rpc.ts` for convenience
