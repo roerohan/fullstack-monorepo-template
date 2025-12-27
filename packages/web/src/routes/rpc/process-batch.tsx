@@ -56,13 +56,16 @@ function RouteComponent() {
 						<h2 className="text-xl font-semibold text-cyan-400 mb-3">Usage Examples</h2>
 						<div className="space-y-2">
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?items=apple,banana,cherry</code> → Process 3 fruits
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?items=apple,banana,cherry</code> →
+								Process 3 fruits
 							</p>
 							<p className="text-gray-300">
-								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?items=hello,world,test</code> → Process 3 words
+								<code className="text-cyan-400 bg-slate-800 px-2 py-1 rounded">?items=hello,world,test</code> → Process
+								3 words
 							</p>
 							<p className="text-gray-400 text-sm mt-4">
-								💡 Pass comma-separated values in the <code className="text-cyan-400">items</code> parameter. The current implementation converts them to uppercase.
+								💡 Pass comma-separated values in the <code className="text-cyan-400">items</code> parameter. The
+								current implementation converts them to uppercase.
 							</p>
 						</div>
 					</div>
